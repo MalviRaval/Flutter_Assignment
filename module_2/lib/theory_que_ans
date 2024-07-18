@@ -13,9 +13,38 @@ There are several advantage of inheritance
 
 
 23. Difference between inheritance and encapsulation. B5. Difference between inheritance and abstraction.
+    Inheritance means acquire properties and behaviour of another class is called inheritance.
+    There are five type of inheritance.
+    1) Single Inheritance
+    2) Multiple Inheritance
+    3) Multilevel Inheritance
+    4) Hybrid Inheritance
+    5) Hierarchical Inheritance
+
+    Encapsulation means binding or wrapping of data and member together into a single unit.
+    Encapsulation is also helps in data hiding. where object kept private from outside of the world.
+    Encapsulation is implemented through access modifier.
+    Real world ex is car engine encapsulate the internal working you interact with it through the car’s controls without accessing the engine directly.
+
+
+    whereas in Abstraction is process in which we only show essential functionality to the user.
+    Abstraction is achieved by abstract class and interface.
+    Abstraction is implemented through abstract class and interface.
+    Real world ex is when you drive a car you don't need to know about engine
 
 
 24. Difference between inheritance and polymorphism
+
+     Inheritance : Child class inherits properties of parent class.
+     its is follow IS-A relation between classes
+     Multiple (But it is support multiple interface) and hybrid inheritance is not supported in inheritance
+     its is use extend keyword.
+
+
+     Polymorphism: Poly means more morph means form.
+     Polymorphism has two type : compile time polymorphism and run time polymorphism
+     Polymorphism has two method : Method overloading and Method Overriding
+     In Dart not allow method overloading because of var variable and optional parameter.
 
 
 
