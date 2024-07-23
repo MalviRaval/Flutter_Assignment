@@ -50,12 +50,100 @@ There are several advantage of inheritance
 
 
 25. Can we override static method in Dart?
+    No, We can't override static method because static methods belongs to the class itself rather than instance of class.
+
 26. Can we overload static method in Dart?
-27. Can a class implement more than one interface? B10. Can a class extend more than one class in Dart?
+    No, We can't overload static method. Dart doesn't provide method overloading.
+
+27. Can a class implement more than one interface?
+    Yes, More then one implements method in class
+
+
+B10. Can a class extend more than one class in Dart?
+      No we extend only one parent class in dart. Because dart doesn't support method overloading
+
 28. Can an interface extend more than one interface in Dart?
+
+
 29. What will happen if a class implements two interfaces and they both have a method with same name and signature?
-30. Can we pass an object of a subclass to a method expecting an object of the super class? B14. Are static members inherited to sub classes?
-31. What happens if the parent and the child class have a field with same identifier? B16. Are constructors and initializers also inherited to sub classes?
+    Interface solve the problem of method Overloading. if there will be happen this kind of issue then take common method for a one time.
+
+
+    class A{
+       void a1(){}
+       void b1(int a){}
+    }
+    class B{
+       void a1(){}
+       void b1(int a){}
+    }
+
+    class c implements A{
+      @override
+      void a1() {
+        // TODO: implement a1
+      }
+
+      @override
+      void b1(int a) {
+        // TODO: implement b1
+      }
+
+
+    }
+
+
+30. Can we pass an object of a subclass to a method expecting an object of the super class?
+
+ abstract class Vehicle {}
+
+ class Car extends Vehicle {}
+
+ class Bike extends Vehicle {}
+
+ class Garage {
+   void repair(Vehicle vehicle) {}
+ }
+
+ void main() {
+   Garage g = new Garage();
+   Vehicle c = new Car();
+   Vehicle b = new Bike();
+   g.repair(c);
+   g.repair(b);
+ }
+
+
+ B14. Are static members inherited to sub classes?
+      No. Static method and member are not inherited by subclass.
+
+
+
+31. What happens if the parent and the child class have a field with same identifier?
+Yes, it is possible to have same data member in Parent and Child classes.
+class A {
+  String str = "We are in Parent class";
+}
+
+class B extends A {
+  String str =   "We are in Child class";
+}
+
+void main() {
+  A a = A();
+  print("Base class reference can access only base class member ${a.str}");
+
+  B b = B();
+
+  print("Derived class reference can access both ${b.str}");
+}
+
+
+
+B16. Are constructors and initializers also inherited to sub classes?
+
+
+
 32. How do you restrict a member of a class from inheriting by its sub classes?
 33. How do you implement multiple inheritance in Dart?
 34. Can a class extend by itself in Dart?
