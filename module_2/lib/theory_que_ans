@@ -145,6 +145,7 @@ B16. Are constructors and initializers also inherited to sub classes?
 
 
 32. How do you restrict a member of a class from inheriting by its sub classes?
+
 33. How do you implement multiple inheritance in Dart?
 34. Can a class extend by itself in Dart?
 35. How do you override a private method in Dart?
