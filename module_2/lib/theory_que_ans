@@ -223,7 +223,7 @@ class A extend B implement C,D,E{
 45. Difference between object oriented and object based language.
     Object oriented have many functionality like Encapsulation,Polymorphism,Inheritance etc
 
-    
+
     Where Object Based language has limited functionality for this.
     like no inheritance, they are focus on object, Limited polymorphism
     Ex JavaScript
