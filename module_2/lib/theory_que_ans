@@ -60,10 +60,10 @@ There are several advantage of inheritance
 
 
 B10. Can a class extend more than one class in Dart?
-      No we extend only one parent class in dart. Because dart doesn't support method overloading
+     No we extend only one parent class in dart. Because dart doesn't support method overloading
 
 28. Can an interface extend more than one interface in Dart?
-
+    // yes its is possible by mixin.
 
 29. What will happen if a class implements two interfaces and they both have a method with same name and signature?
     Interface solve the problem of method Overloading. if there will be happen this kind of issue then take common method for a one time.
@@ -141,24 +141,96 @@ void main() {
 
 
 B16. Are constructors and initializers also inherited to sub classes?
+     yes, it is possible.
 
 
 
 32. How do you restrict a member of a class from inheriting by its sub classes?
+    Restrict a member of a class from inheriting by its sub classes using private(_).
 
 33. How do you implement multiple inheritance in Dart?
+    Using interface we implement multiple inheritance.
+
 34. Can a class extend by itself in Dart?
+    No, But we can make multiple object of class
+
 35. How do you override a private method in Dart?
+In Dart, We cannot directly override a private method from a superclass in subclass.
+Private methods in Dart are only accessible within the library
+So if we need to overide private method the,,
+
+
+
 36. When to overload a method in Dart and when to override it?
+    Method overloading is not possible in dart.
+    so we use interface.
+    using interface we can override same method or common useful method.
+
 37. What the order is of extends and implements keyword on Dart class declaration?
+extends means when you inherit base or parent class.
+implements means interface use.
+class A extend B implement C,D,E{
+}
+
 38. How do you prevent overriding a Dart method without using the final modifier?
+  In dat there is final keyword which value not change once assign.
+  using noinline we have to achieve method like final method.
+
 39. What are the rules of method overriding in Dart?
+    There are several rules of method Overriding.
+
+
 40. Difference between method overriding and overloading in Dart.
+    Method Overloading :Method overloading occurs when one class has same name but different parameter with different return type.
+    The overloaded methods may have different return types or access modifiers, but they must differ in their parameter lists.
+    it is achieve by polymorphism.
+
+    Method Overriding occurs when different child class has same name of method that is already defined in parent class.
+    The overridden method must have the same name, parameter types, and return type as the method it is overriding.
+
+
+
+
 41. What happens when a class implements two interfaces and both declare field (variable) with same name?
+
+    class A{
+      String? a;
+    }
+    class B{
+      String? a;
+    }
+    class C implements A,B{
+      @override
+      String? a;
+      C(this.a);
+    }
+
+    void main(){
+      var c=C("ABC");
+      print("${c.a}");
+    }
+
+
 42. Can a subclass instance method override a superclass static method?
+    No, A subclass instance method override a superclass static method.
+
 43. Can a subclass static method hide superclass instance method?
+    No, A subclass static method cannot hide a superclass instance method.
+
 44. Can a superclass access subclass member?
+    it is not possible if they give a private modifier.
+
 45. Difference between object oriented and object based language.
+    Object oriented have many functionality like Encapsulation,Polymorphism,Inheritance etc
+
+    
+    Where Object Based language has limited functionality for this.
+    like no inheritance, they are focus on object, Limited polymorphism
+    Ex JavaScript
+
 46. Create a program using List
+    Enter three value in list and
+
+
 47. Create a program using Set
 48. Create a program using Map
