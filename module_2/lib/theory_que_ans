@@ -229,8 +229,25 @@ class A extend B implement C,D,E{
     Ex JavaScript
 
 46. Create a program using List
-    Enter three value in list and
+    List is similar type of array
+    List is used to representing a collection of objects.
+    It is an ordered group of objects.
+    Its contain duplicate value
+
+     var a = [ 'Test1', 'Test2' ];
+     print(a);
+     a.add('Test3');
+     print(a);
 
 
 47. Create a program using Set
-48. Create a program using Map
+    Set is the unordered collection of the different values of the same type.
+    Its doesn't allow duplicate value.
+
+    var names = <String>{"A","B","C","D"};
+    print(names);
+
+48. Create a program using Map.
+    We can define a map literal by enclosing a comma-separated list of key-value pairs in curly braces {}.
+    var details = {'name':'Malvi','Password':'Malvi@123'};
+    print(details);
