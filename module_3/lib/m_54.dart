@@ -1,5 +1,5 @@
 // ignore_for_file: prefer_const_constructors
-
+//create an application to increate font size when plus button click and decrease when minus button click
 import 'package:flutter/material.dart';
 
 class M54 extends StatefulWidget {

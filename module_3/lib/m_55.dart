@@ -1,4 +1,5 @@
 // ignore_for_file: sized_box_for_whitespace, prefer_const_constructors
+//create an application to display Textview when checkbox is checked and hide otherwise
 
 import 'package:flutter/material.dart';
 
