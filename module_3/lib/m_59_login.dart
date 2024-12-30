@@ -60,8 +60,6 @@ class _M59LoginPageState extends State<M59LoginPage> {
                       labelText: 'Username',
                     ),
                   ),
-
-
                   SizedBox(height: 30,),
                   TextFormField(
                     decoration: InputDecoration(
