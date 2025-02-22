@@ -1,9 +1,4 @@
-// ignore_for_file: prefer_const_constructors, use_key_in_widget_constructors, library_private_types_in_public_api
-
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
-
 import 'utils/ratingbar.dart';
 
 class M61 extends StatefulWidget {
@@ -129,7 +124,8 @@ class _M61State extends State<M61> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      key: key,
+      //key: key,
+      //resizeToAvoidBottomInset: false,
       appBar: buildBar(context),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -146,8 +142,9 @@ class _M61State extends State<M61> {
   }
 
   __horizontalScoll() {
-    return SizedBox(
+    return Container(
       height: 60,
+      padding: const EdgeInsets.only(left: 22.0, right: 22.0),
       child: ListView.builder(
         itemCount: _listCategory.length,
         scrollDirection: Axis.horizontal,
@@ -190,70 +187,99 @@ class _M61State extends State<M61> {
 
   _buildList(List<Map> list) {
     return Expanded(
-      child: GridView.builder(
-          itemCount: list.length,
-          gridDelegate:
-              SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
-          itemBuilder: (_, index) {
-            return Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
-                  width: 150,
-                  height: 20,
-                  margin: EdgeInsets.all(5),
-                  clipBehavior: Clip.antiAlias,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(
-                          15) // Adjust the radius as needed
+      child: Container(
+        height: MediaQuery.of(context).size.height,
+        padding: const EdgeInsets.only(left: 22.0, right: 22.0),
+        child: GridView.builder(
+            shrinkWrap: true,
+            physics: NeverScrollableScrollPhysics(),
+            itemCount: list.length,
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2),
+            itemBuilder: (_, index) {
+              return Padding(
+                padding: const EdgeInsets.only(left: 2.0, right: 2.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      height: 120,
+                      margin: const EdgeInsets.all(5),
+                      clipBehavior: Clip.antiAlias,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(
+                              15) // Adjust the radius as needed
+                          ),
+                      child: Image.asset(
+                        "${list[index]['imageName']}",
+                        fit: BoxFit.cover,
                       ),
-                  child: Image.asset(
-                    "${list[index]['imageName']}",
-                    fit: BoxFit.cover,
-                  ),
+                    ),
+                    Flexible(
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 8.0, right: 8.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "${list[index]['foodName']}",
+                              maxLines: 2,
+                            ),
+                            const SizedBox(
+                              height: 5,
+                            ),
+                            StarRating(
+                              rating: double.parse("${list[index]['rate']}"),
+                              color: Colors.amber,
+                            ),
+                          ],
+                        ),
+                      ),
+                    )
+                  ],
                 ),
-              ],
-            );
-            //   return Container(
-            //       margin: EdgeInsets.all(5),
-            //       decoration: BoxDecoration(
-            //           boxShadow: [
-            //             BoxShadow(
-            //                 color: Colors.white.withOpacity(0.8),
-            //                 blurRadius: 5.0,
-            //                 offset: Offset(0.0, 3.0)),
-            //           ],
-            //           border: Border.all(color: Colors.white),
-            //           borderRadius: BorderRadius.all(
-            //             Radius.circular(12),
-            //           )),
-            //       child: Column(
-            //         crossAxisAlignment: CrossAxisAlignment.start,
-            //         children: [
-            //           Image.asset(
-            //             "${list[index]['imageName']}",
-            //           ),
-            //           Padding(
-            //             padding: const EdgeInsets.only(left: 2.0, right: 2.0),
-            //             child: Text(
-            //               "${list[index]['foodName']}",
-            //               maxLines: 2,
-            //             ),
-            //           ),
-            //           SizedBox(
-            //             height: 5,
-            //           ),
-            //           Padding(
-            //             padding: const EdgeInsets.only(left: 2.0, right: 2.0),
-            //             child: StarRating(
-            //               rating: double.parse("${list[index]['rate']}"),
-            //               color: Colors.amber,
-            //             ),
-            //           )
-            //         ],
-            //       ));
-            // },
-          }),
+              );
+              //   return Container(
+              //       margin: EdgeInsets.all(5),
+              //       decoration: BoxDecoration(
+              //           boxShadow: [
+              //             BoxShadow(
+              //                 color: Colors.white.withOpacity(0.8),
+              //                 blurRadius: 5.0,
+              //                 offset: Offset(0.0, 3.0)),
+              //           ],
+              //           border: Border.all(color: Colors.white),
+              //           borderRadius: BorderRadius.all(
+              //             Radius.circular(12),
+              //           )),
+              //       child: Column(
+              //         crossAxisAlignment: CrossAxisAlignment.start,
+              //         children: [
+              //           Image.asset(
+              //             "${list[index]['imageName']}",
+              //           ),
+              //           Padding(
+              //             padding: const EdgeInsets.only(left: 2.0, right: 2.0),
+              //             child: Text(
+              //               "${list[index]['foodName']}",
+              //               maxLines: 2,
+              //             ),
+              //           ),
+              //           SizedBox(
+              //             height: 5,
+              //           ),
+              //           Padding(
+              //             padding: const EdgeInsets.only(left: 2.0, right: 2.0),
+              //             child: StarRating(
+              //               rating: double.parse("${list[index]['rate']}"),
+              //               color: Colors.amber,
+              //             ),
+              //           )
+              //         ],
+              //       ));
+              // },
+            }),
+      ),
     );
   }
 
