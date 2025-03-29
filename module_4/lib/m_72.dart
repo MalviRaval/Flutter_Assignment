@@ -13,25 +13,31 @@ class _M72State extends State<M72> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.deepPurple,
         title: Text("Phone call App"),
       ),
       body: Center(
-        child: Column(
-          children: [
-            TextField(
-              keyboardType: TextInputType.phone,
-              inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-              decoration: InputDecoration(
-                hintText: 'Enter the phone number',
-                border: OutlineInputBorder(),
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            spacing: 20,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              TextField(
+                keyboardType: TextInputType.phone,
+                inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                decoration: InputDecoration(
+                  hintText: 'Enter the phone number',
+                  border: OutlineInputBorder(),
+                ),
               ),
-            ),
-            ElevatedButton(
-                onPressed: () {
-                  _makePhoneCall('tel:1234567890');
-                },
-                child: Text('Phone call')),
-          ],
+              ElevatedButton(
+                  onPressed: () {
+                    _makePhoneCall('tel:1234567890');
+                  },
+                  child: Text('Phone call')),
+            ],
+          ),
         ),
       ),
     );
