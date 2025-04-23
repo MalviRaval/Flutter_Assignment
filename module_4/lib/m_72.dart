@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:permission_handler/permission_handler.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/url_launcher_string.dart' as UrlLauncher;
 
 class M72 extends StatefulWidget {
   const M72({super.key});
@@ -9,6 +12,8 @@ class M72 extends StatefulWidget {
 }
 
 class _M72State extends State<M72> {
+  TextEditingController _phoneNumberController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,6 +29,7 @@ class _M72State extends State<M72> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               TextField(
+                controller: _phoneNumberController,
                 keyboardType: TextInputType.phone,
                 inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                 decoration: InputDecoration(
@@ -33,7 +39,15 @@ class _M72State extends State<M72> {
               ),
               ElevatedButton(
                   onPressed: () {
-                    _makePhoneCall('tel:1234567890');
+                    if (_phoneNumberController.text.trim().isEmpty) {
+                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                        content: Text("Please enter a phone number"),
+                      ));
+                      return;
+                    }
+                    String phoneNumber = _phoneNumberController.text.trim();
+                    _phoneNumberController.clear();
+                    _makePhoneCallWithPermission(phoneNumber, context);
                   },
                   child: Text('Phone call')),
             ],
@@ -42,8 +56,45 @@ class _M72State extends State<M72> {
       ),
     );
   }
+Future<bool> _requestPhonePermission() async {
+  PermissionStatus status = await Permission.phone.request();
+  return status.isGranted;
+}
 
-  _makePhoneCall(String s) {
-    // return
+Future<bool> _checkPhonePermission() async {
+  PermissionStatus status = await Permission.phone.status;
+  return status.isGranted;
+}
+
+Future<void> _makePhoneCallWithPermission(String phoneNumber, BuildContext context) async {
+  if (await _checkPhonePermission()) {
+    final Uri launchUri = Uri(scheme: 'tel', path: phoneNumber);
+    if (await canLaunchUrl(launchUri)) {
+      await launchUrl(launchUri);
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Could not launch the phone dialer.')),
+      );
+    }
+  } else {
+    // Permission not granted, request it
+    if (await _requestPhonePermission()) {
+      final Uri launchUri = Uri(scheme: 'tel', path: phoneNumber);
+      if (await canLaunchUrl(launchUri)) {
+        await launchUrl(launchUri);
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Could not launch the phone dialer.')),
+        );
+      }
+    } else {
+      // Permission denied after request
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Phone call permission was denied.')),
+      );
+      // Optionally, you can guide the user to the app settings to enable it manually.
+      openAppSettings();
+    }
   }
+}
 }
